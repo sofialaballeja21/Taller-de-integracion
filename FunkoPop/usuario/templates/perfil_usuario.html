@@ -1,0 +1,68 @@
+<div class="perfil-container">
+    <h1>Perfil de {{ usuario.username }}</h1>
+
+    <div class="perfil-info">
+        <p><strong>Email:</strong> {{ usuario.email }}</p>
+        <p><strong>Nombre:</strong> {{ usuario.first_name }}</p>
+        <p><strong>Apellido:</strong> {{ usuario.last_name }}</p>
+        <p><strong>Teléfono:</strong> {{ usuario.perfilusuario.phone }}</p>
+    </div>
+
+    <div class="perfil-acciones">
+        <a href="{% url 'editar_perfil' %}" class="btn btn-editar">Editar Perfil</a>
+        <form action="{% url 'eliminar_usuario' %}" method="POST" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-eliminar" onclick="return confirm('¿Estás seguro de que deseas eliminar tu perfil? Esta acción no se puede deshacer.')">
+                Eliminar Perfil
+            </button>
+        </form>
+    </div>
+</div>
+
+<style>
+    .perfil-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        background-color: #f9f9f9;
+    }
+    .perfil-container h1 {
+        text-align: center;
+        color: #333;
+    }
+    .perfil-info p {
+        font-size: 16px;
+        color: #555;
+        margin: 5px 0;
+    }
+    .perfil-acciones {
+        margin-top: 20px;
+        text-align: center;
+    }
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-decoration: none;
+        margin: 5px;
+    }
+    .btn-editar {
+        background-color: #4CAF50;
+        color: white;
+    }
+    .btn-eliminar {
+        background-color: #f44336;
+        color: white;
+    }
+    .btn-editar:hover {
+        background-color: #45a049;
+    }
+    .btn-eliminar:hover {
+        background-color: #e31b0c;
+    }
+</style>
